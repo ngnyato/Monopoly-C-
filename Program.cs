@@ -3,13 +3,23 @@
         GameController gc = new GameController();
         while (true) {
             string line = Console.ReadLine();
-            Console.WriteLine(line);
+            if(line == "") {
+                break;
+            }
             string[] commands = line.Split(" ");
             if (commands[0] == "RJ") {
                 string Name = commands[1];
-                
+                if (gc.HasPlayer(Name)) {
+                    Console.WriteLine("Jogador Existente.");
+                } 
+                else {
+                    gc.RegisterPlayer(Name);
+                    Console.WriteLine("Jogador registado com sucesso.");
+                }
             } else if (commands[0] == "LJ") {
-
+                if(!gc.HasPlayers()) {
+                    Console.WriteLine("Sem jogadores registados.");
+                }
             } else if (commands[0] == "IJ") {
 
             } else if (commands[0] == "LD") {
