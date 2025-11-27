@@ -6,20 +6,21 @@
         while (true)
         {
             string? line = Console.ReadLine();
-            if (line.Length == 0 || line == null)
+            if (line.Length == 0 || line == null) // proteçao contra input nulo
             {
                 Console.Clear();
                 continue;
             }
             
-            string[] commandLine = line.Split(" ");
-            if (commandLine.Length < 2)
+            string[] commandLine = line.Split(" "); // divide o input entre o comando e o jogador 
+            
+            if (commandLine.Length < 2) // proteçao contra meter apenas "RJ" "LJ" etc.
             {
                 Console.Clear();
                 continue;
             }
                  
-            string cmd = commandLine[0].ToUpper();
+            string cmd = commandLine[0].ToUpper(); // formataçao para permitir melhor user interaction
             string playerName = commandLine[1];
             
             switch (cmd)
