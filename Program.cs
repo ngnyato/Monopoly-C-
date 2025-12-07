@@ -50,8 +50,18 @@
                         {
                                 gc.ListPlayers();
                         }
-
                         break;
+
+
+
+
+
+
+
+                        
+                        default:
+                            Console.WriteLine("Instrução inválida.");
+                            break;
 
             }
             
