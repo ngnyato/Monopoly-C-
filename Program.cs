@@ -1,4 +1,6 @@
-﻿public class Program
+﻿using System.ComponentModel.Design;
+
+public class Program
 {
     public static void Main()
     {
@@ -52,15 +54,46 @@
                         }
                         break;
 
+                    case "IJ":
+                            // TODO Implementar iniciar jogo
+                            if (commandLine.Length < 3 || commandLine.Length > 6) // minimo 2 jogadores maximo 5 jogadores
+                         {
+                              Console.WriteLine("Instrução inválida.");
+                              continue;
+                         }
+                             string[] plrsInGame = new string[commandLine.Length - 1];
+
+                             for (int i = 1; i < commandLine.Length; i++)    // separamos os nomes dos jogadores do comando
+                            {plrsInGame[i - 1 ]= commandLine[i];}
+
+                            bool allExist = true;
+                            for (int j = 0; j < plrsInGame.Length; j++)   // verificamos se os jogadores existem
+                            {
+                                if (!gc.DoPlayerExists(plrsInGame[j]))
+                                {
+                                   allExist = false;
+                                }
+                            }
+                            if (!allExist)
+                            {
+                                Console.WriteLine("Jogador inexistente.");
+                                continue;
+                            }
+                         if (gc.IsGameInProgress())   // verifica se ja existe um jogo em curso
+                         {
+                             Console.WriteLine("Existe um jogo em curso.");
+                             continue;
+                         }
+
+                         gc.StartGame(plrsInGame); // inicia o jogo
+                         Console.WriteLine("Jogo iniciado com sucesso.");
+                    
+                         break;
+                            
 
 
-
-
-
-
-                        
                         default:
-                            Console.WriteLine("Instrução inválida.");
+                            Console.WriteLine("Instrução inválida.a");
                             break;
 
             }

@@ -1,6 +1,11 @@
-    public class GameController
+using System.Runtime.InteropServices.Marshalling;
+using System.Runtime.Serialization.Formatters;
+
+public class GameController
     {
         private Dictionary<string, Player> players = new Dictionary<string, Player>();
+        bool gameInProgress = false;
+        private List<Player> playersInGame = new List<Player>();
 
         public bool DoPlayerExists(string playerName)
         {
@@ -27,5 +32,21 @@
 
                     }
                 
+        }
+
+            public void StartGame(string[] playersGameList)
+            {
+                for (int i = 0; i < playersGameList.Length; i++)
+                {
+                    this.playersInGame.Add(players[playersGameList[i]]);
+                }
+           
+            // implemetar add dinheiro etc etc
+                gameInProgress = true;
+            }
+        
+        public bool IsGameInProgress()
+        {
+            return gameInProgress;
         }
     }
