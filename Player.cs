@@ -4,8 +4,8 @@ public class Player {
     public int wins;
     public int losses;
     public int ties;
-    public double money; // TODO: check if this is needed.
-    public int posX, posY;
+    public double money = 1200; // TODO: check if this is needed.
+    public int posX = 3, posY = 3;
 
 
 
