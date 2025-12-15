@@ -8,7 +8,6 @@ public class Player {
     public int posX = 3, posY = 3;
 
 
-
     
 
 
@@ -18,3 +17,4 @@ public class Player {
         this.Name = Name;
     }
 }
+    

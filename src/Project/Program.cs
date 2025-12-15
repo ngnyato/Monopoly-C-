@@ -1,10 +1,12 @@
 ﻿using System.ComponentModel.Design;
-
+#nullable disable
 public class Program
 {
     public static void Main()
     {
+        
         string[] commandLine; 
+        BoardManager.InitializeBoard();
         GameController gc = new GameController();
         while (true)
         {
@@ -121,8 +123,7 @@ public class Program
                                 {
                                     gc.RollDices();
                                 }
-                                // TODO : implementar o resto do  tabuleiro e dos comandos!!
-                            
+                               
                              
                                   
                                 

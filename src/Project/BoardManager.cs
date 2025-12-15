@@ -1,16 +1,85 @@
-    public static class BoardManager
+   using System;
+#nullable disable
+
+
+public static class BoardManager
 {
     
-  public static readonly string[,] housesNames  = new string[7, 7]
+  public static readonly House[,] Houses  = new House[7, 7];
+ 
+    public static void InitializeBoard()
     {
-        { "Prison",  "Green3",   "Violet1", "Train2", "Red3",   "White1",   "BackToStart" },
-        { "Blue3",   "Community","Red2",    "Violet2","WaterWorks","Chance","White2"     },
-        { "Blue2",   "Red1",     "Chance",  "Brown2", "Community","Black1","LuxTax"      },
-        { "Train1",  "Green2",   "Teal1",   "Start",  "Teal2",  "Black2",   "Train3"      },
-        { "Blue1",   "Green1",   "Community","Brown1","Chance", "Black3",   "White3"     },
-        { "Pink1",   "Chance",   "Orange1", "Orange2","Orange3","Community","Yellow3"    },
-        { "FreePark","Pink2",    "ElectricCompany","Train4","Yellow1","Yellow2","Police" }
-    };
+         // y = linha, x = coluna
 
+        // linha 0
+        Houses[0,0] = new House("Prison",       "Special",   null, 0,   0, 0, 0);
+        Houses[0,1] = new House("Green3",       "Property", null, 160, 10, 1, 0);
+        Houses[0,2] = new House("Violet1",      "Property", null, 150, 10, 2, 0);
+        Houses[0,3] = new House("Train2",       "Train",    null, 150, 25, 3, 0);
+        Houses[0,4] = new House("Red3",         "Property", null, 160, 10, 4, 0);
+        Houses[0,5] = new House("White1",       "Property", null, 160, 10, 5, 0);
+        Houses[0,6] = new House("BackToStart",  "Special",   null, 0,   0, 6, 0);
+
+        // linha 1
+        Houses[1,0] = new House("Blue3",        "Property", null, 170, 10, 0, 1);
+        Houses[1,1] = new House("Community",    "Community", null, 0,   0, 1, 1);
+        Houses[1,2] = new House("Red2",         "Property", null, 130, 10, 2, 1);
+        Houses[1,3] = new House("Violet2",      "Property", null, 130, 10, 3, 1);
+        Houses[1,4] = new House("WaterWorks",   "Utility",  null, 120, 15, 4, 1);
+        Houses[1,5] = new House("Chance",       "Chance",   null, 0,   0, 5, 1);
+        Houses[1,6] = new House("White2",       "Property", null, 180, 10, 6, 1);
+
+        // linha 2
+        Houses[2,0] = new House("Blue2",        "Property", null, 140, 10, 0, 2);
+        Houses[2,1] = new House("Red1",         "Property", null, 130, 10, 1, 2);
+        Houses[2,2] = new House("Chance",       "Chance",   null, 0,   0, 2, 2);
+        Houses[2,3] = new House("Brown2",       "Property", null, 120, 10, 3, 2);
+        Houses[2,4] = new House("Community",    "Community", null, 0,   0, 4, 2);
+        Houses[2,5] = new House("Black1",       "Property", null, 110, 10, 5, 2);
+        Houses[2,6] = new House("LuxTax",       "Tax",      null, 0,   0, 6, 2);
+
+        // linha 3
+        Houses[3,0] = new House("Train1",       "Train",    null, 150, 25, 0, 3);
+        Houses[3,1] = new House("Green2",       "Property", null, 140, 10, 1, 3);
+        Houses[3,2] = new House("Teal1",        "Property", null, 90, 10, 2, 3);
+        Houses[3,3] = new House("Start",        "Special",   null, 0,   0, 3, 3);
+        Houses[3,4] = new House("Teal2",        "Property", null, 130, 10, 4, 3);
+        Houses[3,5] = new House("Black2",       "Property", null, 120, 10, 5, 3);
+        Houses[3,6] = new House("Train3",       "Train",    null, 150, 25, 6, 3);
+
+        // linha 4
+        Houses[4,0] = new House("Blue1",        "Property", null, 140, 10, 0, 4);
+        Houses[4,1] = new House("Green1",       "Property", null, 120, 10, 1, 4);
+        Houses[4,2] = new House("Community",    "Community", null, 0,   0, 2, 4);
+        Houses[4,3] = new House("Brown1",       "Property", null, 100, 10, 3, 4);
+        Houses[4,4] = new House("Chance",       "Chance",   null, 0,   0, 4, 4);
+        Houses[4,5] = new House("Black3",       "Property", null, 130, 10, 5, 4);
+        Houses[4,6] = new House("White3",       "Property", null, 190, 10, 6, 4);
+
+        // linha 5
+        Houses[5,0] = new House("Pink1",        "Property", null, 160, 10, 0, 5);
+        Houses[5,1] = new House("Chance",       "Chance",   null, 0,   0, 1, 5);
+        Houses[5,2] = new House("Orange1",      "Property", null, 120, 10, 2, 5);
+        Houses[5,3] = new House("Orange2",      "Property", null, 120, 10, 3, 5);
+        Houses[5,4] = new House("Orange3",      "Property", null, 140, 10, 4, 5);
+        Houses[5,5] = new House("Community",    "Community", null, 0,   0, 5, 5);
+        Houses[5,6] = new House("Yellow3",      "Property", null, 170, 10, 6, 5);
+
+        // linha 6
+        Houses[6,0] = new House("FreePark",     "Special",   null, 0,   0, 0, 6);
+        Houses[6,1] = new House("Pink2",        "Property", null, 180, 10, 1, 6);
+        Houses[6,2] = new House("ElectricCompany","Utility",null, 120, 15, 2, 6);
+        Houses[6,3] = new House("Train4",       "Train",    null, 150, 25, 3, 6);
+        Houses[6,4] = new House("Yellow1",      "Property", null, 140, 10, 4, 6);
+        Houses[6,5] = new House("Yellow2",      "Property", null, 140, 10, 5, 6);
+        Houses[6,6] = new House("Police",       "Special",   null, 0,   0, 6, 6);
+
+
+
+
+    }
+
+ 
+  
 
 }
