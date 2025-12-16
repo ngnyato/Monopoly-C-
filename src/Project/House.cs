@@ -1,6 +1,6 @@
 public class House 
 {   
-     // FUNNY if i put a doctor here in this class it becomes DOCTOR HOUSE ?!?!
+     // #FUNNY/ if i put a doctor here in this class it becomes DOCTOR HOUSE ?!?!
      // https://i.redd.it/0iqk8cd2yh9e1.jpeg
 
     public string houseName { get; set;}

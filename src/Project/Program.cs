@@ -95,40 +95,49 @@ public class Program
 
                          case "LD":
                          
-                                if (commandLine.Length < 2)
+                             if (commandLine.Length < 2)
                                 {
                                     Console.WriteLine("Instrução inválida.");
                                    continue;
                                 }
-
-
-                           bool isInGame = gc.playersInGame.Any(p => p.Name == commandLine[1]);
 
                              if (!gc.IsGameInProgress())
                                {
                                     Console.WriteLine("Não existe um jogo em curso.");
                                     continue;
                                }
+
+                             bool isInGame = gc.playersInGame.Any(p => p.Name == commandLine[1]); // verifica se o jogador faz parte do jogo em curso
                              if (!isInGame)
                                {
                                     Console.WriteLine("Jogador não participa no jogo em curso.");
                                     continue;
                                }
-                             else if ( commandLine[1] != gc.playersInGame[gc.turnIndex].Name )
+
+                             if (gc.turnIndex >= gc.playersInGame.Count)
+                               {
+                                   gc.turnIndex = 0;
+                               }
+
+                             if ( commandLine[1] != gc.playersInGame[gc.turnIndex].Name )
                                 {
                                     Console.WriteLine("Não é a vez do jogador.");
                                     continue;
                                 } 
-                              else if  (commandLine[1] == gc.playersInGame[gc.turnIndex].Name)
-                                {
-                                    gc.RollDices();
-                                }
-                               
-                             
-                                  
-                                
-                             
-                             
+                            if (commandLine.Length == 4)
+                              {
+
+                                int moveX = int.Parse(commandLine[2]);
+                                int moveY = int.Parse(commandLine[3]);
+
+                                gc.RollDices(moveX,moveY);
+                              }
+                              else
+                              {
+                                gc.RollDices(null,null);
+                              }
+            
+                              
                              break;
                             
 

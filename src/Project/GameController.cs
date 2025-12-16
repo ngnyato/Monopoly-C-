@@ -2,7 +2,7 @@ using System.Collections;
 using System.Runtime.InteropServices.Marshalling;
 using System.Runtime.Intrinsics.X86;
 using System.Runtime.Serialization.Formatters;
-
+#nullable disable
 public class GameController
     {
         private Dictionary<string, Player> players = new Dictionary<string, Player>();
@@ -54,18 +54,28 @@ public class GameController
             return gameInProgress;
         }
         
-        public void RollDices()
+        public void RollDices(int? testMoveX, int? testMoveY)
     {
         if (turnIndex >= playersInGame.Count)
-        {
-            turnIndex = 0;
-        }
+        turnIndex = 0;
+
         Player p = playersInGame[turnIndex];
-        Random x = new Random();
-        Random y = new Random();
+
+        int moveX, moveY;
+
+        if (testMoveX.HasValue && testMoveY.HasValue)
+        {
+            moveX = testMoveX.Value;
+            moveY = testMoveY.Value;
+        }
+        else
+        {
+             
+         Random rnd = new Random();
         //Console.WriteLine($"#DEBUG Posicao do jogador antes  {p.Name} X={p.posX} Y={p.posY}");
-        int moveX = x.Next(-3,4); // Min incluido e Max Excluido, gera um numero random 
-        int moveY = y.Next(-3,4); 
+         moveX = rnd.Next(-3,4); // Min incluido e Max Excluido, gera um numero random 
+         moveY = rnd.Next(-3,4);   // TODO resolver a situacao de sair o 0
+        }
 
         int posX = p.posX + moveX;
         int posY = p.posY + moveY;
@@ -86,40 +96,70 @@ public class GameController
         playersInGame[turnIndex].posX = posX;
         playersInGame[turnIndex].posY = posY;   
 
-        landedHouse = BoardManager.Houses[posY, posX].houseName;
-        Console.WriteLine($" Debug o player {p.Name} saiu x {posX} e y {posY}, caiu na {landedHouse}");
-
-        switch (landedHouse)
+       House landedHouse = BoardManager.Houses[posY, posX];
+        
+        if (landedHouse == null && landedHouse.houseType == "Property")
         {
-            case "Start":
-                p.money += 200;
-                Console.WriteLine($"{p.Name} recebeu 200 por passar na Start. Saldo atual: {p.money}");
-                break;
-            case "LuxTax":
-                p.money -= 100;
-                Console.WriteLine($"{p.Name} pagou 100 de LuxTax. Saldo atual: {p.money}");
-                break;
-            case "IncomeTax":
-                p.money -= 200;
-                Console.WriteLine($"{p.Name} pagou 200 de IncomeTax. Saldo atual: {p.money}");
-                break;
-            // Adicione mais casos conforme necessário
-            default:
-                // Nenhum evento especial
-                break;
+            Console.WriteLine($"Saiu {moveX}/{moveY} – espaço {landedHouse}. Espaço sem dono.");
+        }
+       
+        if (landedHouse.houseOwner != null && landedHouse.houseType == "Property")
+        {
+            if (landedHouse.houseOwner == playersInGame[turnIndex])
+            {
+                Console.WriteLine($"Saiu {moveX}/{moveY} - espaço {landedHouse}. Espaço já comprado.");
+            }
+
+            if (landedHouse.houseOwner != playersInGame[turnIndex])
+            {
+                Console.WriteLine($"Saiu {moveX}/{moveY} - espaço {landedHouse}. Espaço já comprado por outro jogador. Necessário pagar renda.");
+            }
         }
 
+//         Free Park  
+//         Police  
+//         Prison  
+//          bacl to start 
+//          Chance  
+//         Community 
+        if (landedHouse.houseType == "Special")
+        {
+           switch(landedHouse.houseName)
+            {
+                case "FreePark":
+                Console.WriteLine($"Saiu {moveX}/{moveY} - espaço {landedHouse.houseName}. Espaço FreePark. Jogador recebe (valorNoFreeParjk)."); // TODO missing implementation 
+                    break;
+
+                case "Police":
+                Console.WriteLine($"Saiu {moveX}/{moveY} - espaço {landedHouse.houseName}. Espaço Police. Jogador preso.");
+                    break;
+
+                case "Prison":
+                Console.WriteLine($"Saiu {moveX}/{moveY} - espaço {landedHouse.houseName}. Espaço já comprado por outro jogador. Necessário pagar renda.");
+                    break;
+
+                case "BackToStart":
+                Console.WriteLine($"Saiu {moveX}/{moveY} - espaço {landedHouse.houseName}. Espaço BackToStart. Peça colocada no espaço Start."); // TODO missing implementation 
+                    break;
+
+                case "Chance":
+                Console.WriteLine($"Saiu {moveX}/{moveY} - espaço {landedHouse.houseName}. Espaço especial. Tirar carta.");
+                    break;
+
+                case "Community":
+                Console.WriteLine($"Saiu {moveX}/{moveY} - espaço {landedHouse.houseName}. Espaço especial. Tirar carta.");
+                    break;
 
 
+                default:
+                    break;
+            }
+       
+        }
+
         
-        
-       
-       
-       
-       
-       
-       
-       
         turnIndex++;
+        Console.WriteLine($"DEBUG Saiu x {posX} y {posY} caiu na {landedHouse.houseName}");
+         Console.WriteLine($"DEBUG Moveu x {moveX} y {moveY} caiu na {landedHouse.houseName}");
     }
-    }
+}
