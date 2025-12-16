@@ -25,7 +25,7 @@ public static class BoardManager
         Houses[1,1] = new House("Community",    "Special", null, 0,   0, 1, 1);
         Houses[1,2] = new House("Red2",         "Property", null, 130, 10, 2, 1);
         Houses[1,3] = new House("Violet2",      "Property", null, 130, 10, 3, 1);
-        Houses[1,4] = new House("WaterWorks",   "Utility",  null, 120, 15, 4, 1);
+        Houses[1,4] = new House("WaterWorks",   "Property",  null, 120, 15, 4, 1);
         Houses[1,5] = new House("Chance",       "Special",   null, 0,   0, 5, 1);
         Houses[1,6] = new House("White2",       "Property", null, 180, 10, 6, 1);
 
@@ -68,7 +68,7 @@ public static class BoardManager
         // linha 6
         Houses[6,0] = new House("FreePark",     "Special",   null, 0,   0, 0, 6);
         Houses[6,1] = new House("Pink2",        "Property", null, 180, 10, 1, 6);
-        Houses[6,2] = new House("ElectricCompany","Utility",null, 120, 15, 2, 6);
+        Houses[6,2] = new House("ElectricCompany","Property",null, 120, 15, 2, 6);
         Houses[6,3] = new House("Train4",       "Train",    null, 150, 25, 3, 6);
         Houses[6,4] = new House("Yellow1",      "Property", null, 140, 10, 4, 6);
         Houses[6,5] = new House("Yellow2",      "Property", null, 140, 10, 5, 6);

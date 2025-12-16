@@ -142,9 +142,18 @@ public class Program
                             
 
 
-                        default:
-                            Console.WriteLine("Instrução inválida.");
+                             default:
+                               Console.WriteLine("Instrução inválida.");
                             break;
+                        
+                        case "CE":
+                         
+
+
+
+                        break;
+
+                
 
             }
             

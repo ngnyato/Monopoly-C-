@@ -10,7 +10,7 @@ public class GameController
         public string landedHouse = "";
         public int turnIndex = 0;
         public List<Player> playersInGame = new List<Player>();
-
+        
 
         public bool DoPlayerExists(string playerName)
         {
@@ -97,6 +97,7 @@ public class GameController
         playersInGame[turnIndex].posY = posY;   
 
        House landedHouse = BoardManager.Houses[posY, posX];
+       p.CurrentHouse = landedHouse;
         
         if (landedHouse == null && landedHouse.houseType == "Property")
         {
@@ -162,4 +163,28 @@ public class GameController
         Console.WriteLine($"DEBUG Saiu x {posX} y {posY} caiu na {landedHouse.houseName}");
          Console.WriteLine($"DEBUG Moveu x {moveX} y {moveY} caiu na {landedHouse.houseName}");
     }
+
+    public void BuySpace (Player p)
+    {
+        House h = p.CurrentHouse;
+
+
+
+        if (h.houseType == "Property" && h.houseType != "Train")
+        {
+            // aqui entra se poder comprar a casa
+        }
+
+        if (p.CurrentHouse.houseType != "Property")
+        {
+            Console.WriteLine("Este espaço não está para venda.");
+        }
+
+
+
+
+    }
+    
+        
+    
 }
