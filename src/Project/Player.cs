@@ -6,7 +6,10 @@ public class Player {
     public int ties;
     public double money = 1200; // TODO: check if this is needed.
     public int posX = 3, posY = 3;
+    public bool hasDemandingAction = false, hasToPayRent = false;
     public House CurrentHouse{get; set;}
+
+    public bool hasRolledDices = false;
     public List<House> OwnedHouses {get; } = new(); // TODO pesquisar o que este comando faz
 
 

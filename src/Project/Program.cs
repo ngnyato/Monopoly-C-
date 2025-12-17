@@ -124,7 +124,7 @@ public class Program
                                     Console.WriteLine("Não é a vez do jogador.");
                                     continue;
                                 } 
-                            if (commandLine.Length == 4)
+                            if (commandLine.Length == 4 && gc.CurrentPlayer.hasRolledDices == false)
                               {
 
                                 int moveX = int.Parse(commandLine[2]);
@@ -132,32 +132,50 @@ public class Program
 
                                 gc.RollDices(moveX,moveY);
                               }
-                              else
+                              else if ( gc.CurrentPlayer.hasRolledDices == false)
                               {
                                 gc.RollDices(null,null);
                               }
             
-                              
+                            
                              break;
                             
 
 
-                             default:
+                             default: 
                                Console.WriteLine("Instrução inválida.");
                             break;
                         
                         case "CE":
-                         
+                        if (commandLine.Length != 2)
+                                {
+                                    Console.WriteLine("Instrução inválida.");
+                                   continue;
+                                }
 
-
-
+                             gc.BuySpace();
                         break;
+
+                        case "TT":
+                         
+                        if (commandLine.Length != 2)
+                                {
+                                   
+                                    Console.WriteLine("Instrução inválida.");
+                                   continue;
+                                }
+
+                        gc.CurrentPlayer.hasRolledDices = false;   
+                        gc.FinishTurn(commandLine[1]);
+                        
+                        break;
+
 
                 
 
             }
             
-            // } else if (commands[0] == "IJ") {
+            // } else if (commands[0] == "IbJ") {
             //
             // } else if (commands[0] == "LD") {
             //

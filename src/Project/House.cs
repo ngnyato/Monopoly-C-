@@ -8,7 +8,8 @@ public class House
     public Player houseOwner { get; set;} 
     public int housePrice { get; set;}
     public int houseRent { get; set;}
-
+    public int houseNumber  {
+get; set;}
     public int x { get; set;}
     public int y { get; set;}
 
