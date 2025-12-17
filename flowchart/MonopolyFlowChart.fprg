@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="MonopolyFlowChart"/>
+        <attribute name="authors" value="jpnov"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-12-17 05:05:38 PM"/>
+        <attribute name="created" value="anBub3Y7WUFUT1BDOzIwMjUtMTItMTc7MDM6Mzk6MjQgUE07MjMwNg=="/>
+        <attribute name="edited" value="anBub3Y7WUFUT1BDOzIwMjUtMTItMTc7MDU6MDU6MzggUE07MTsyNDE0"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="numRegistered, numInGame, turnIndex, freeParkValue" type="Integer" array="False" size=""/>
+            <comment text="Declarar Grupo A&#13;&#10;"/>
+            <assign variable="numRegistered" expression="0"/>
+            <assign variable="numInGame" expression="0"/>
+            <assign variable="turnIndex" expression="0"/>
+            <assign variable="freeParkValue" expression="0"/>
+            <declare name="gameInProgress" type="Boolean" array="False" size=""/>
+            <comment text="Declarar Grupo B&#13;&#10;"/>
+            <assign variable="gameInProgress" expression="false"/>
+            <comment text="Grupo C"/>
+            <declare name="RegName" type="String" array="True" size="50"/>
+            <comment text="Grupo D"/>
+            <declare name="RegUsed, RegHasRolled, RegHasDemand, RegHasToPayRent, RegCardDrawn, RegInPrison, RegBankrupt" type="Boolean" array="True" size="50"/>
+            <comment text="Grupo E"/>
+            <declare name="RegPosX, RegPosY, RegPrisonTurns, PlayersHouseX, PlayerHouseY" type="Integer" array="True" size="50"/>
+            <comment text="Grupo F"/>
+            <declare name="RegMoney" type="Real" array="True" size="50"/>
+            <comment text="GRUPO G"/>
+            <declare name="InGameIdx" type="Integer" array="True" size="5"/>
+            <comment text="Grupo H Tabuleiro 7x7 (strings)&#13;&#10;"/>
+            <declare name="HouseName, HouseType, HouseColor" type="String" array="True" size="49"/>
+            <comment text="Grupo I Tabuleiro 7x7 (ints)&#13;&#10;"/>
+            <declare name="HousePrice, HouseRent, HouseOwnerIdx, HouseNum" type="Integer" array="True" size="49"/>
+            <call expression="InitializeBoard(HouseName,HouseType,HouseColor,HousePrice,HouseRent,HouseOwnerIdx,HouseNum)"/>
+        </body>
+    </function>
+    <function name="InitializeBoard" type="None" variable="">
+        <parameters>
+            <parameter name="HouseName" type="String" array="True"/>
+            <parameter name="HouseType" type="String" array="True"/>
+            <parameter name="HouseColor" type="String" array="True"/>
+            <parameter name="HousePrice" type="Integer" array="True"/>
+            <parameter name="HouseRent" type="Integer" array="True"/>
+            <parameter name="HouseOwnerIdx" type="Integer" array="True"/>
+            <parameter name="HouseNum" type="Integer" array="True"/>
+        </parameters>
+        <body>
+            <declare name="i" type="Integer" array="False" size=""/>
+            <for variable="i" start="0" end="48" direction="inc" step="1">
+                <assign variable="HouseOwnerIdx[i]" expression="-1"/>
+                <assign variable="HouseNum[i]" expression="0"/>
+                <assign variable="HouseName[i]" expression="&quot;&quot;"/>
+                <assign variable="HouseType[i]" expression="&quot;&quot;"/>
+                <assign variable="HousePrice[i]" expression="0"/>
+                <assign variable="HouseRent[i]" expression="0"/>
+                <assign variable="HouseColor[i]" expression="&quot;&quot;"/>
+            </for>
+            <declare name="idx" type="Integer" array="False" size=""/>
+            <assign variable="idx" expression="3*7+3"/>
+            <assign variable="HouseName[idx]" expression="&quot;Start&quot;"/>
+            <assign variable="HouseType[idx]" expression="&quot;Special&quot;"/>
+            <assign variable="idx" expression="0*7+0"/>
+            <assign variable="HouseName[idx]" expression="&quot;Prison&quot;"/>
+            <assign variable="HouseType[idx]" expression="&quot;Special&quot;"/>
+            <assign variable="idx" expression="6*7+6"/>
+            <assign variable="HouseName[idx]" expression="&quot;Police&quot;"/>
+            <assign variable="HouseType[idx]" expression="&quot;Special&quot;"/>
+            <assign variable="idx" expression="6*7+0"/>
+            <assign variable="HouseName[idx]" expression="&quot;Freepark&quot;"/>
+            <assign variable="HouseType[idx]" expression="&quot;Special&quot;"/>
+        </body>
+    </function>
+    <function name="RegistrarJogador" type="Boolean" variable="">
+        <parameters>
+            <parameter name="playerName" type="String" array="False"/>
+            <parameter name="RegName" type="String" array="True"/>
+            <parameter name="RegUsed" type="Boolean" array="True"/>
+            <parameter name="RegMoney" type="Real" array="True"/>
+            <parameter name="RegPosX" type="Integer" array="True"/>
+            <parameter name="RegPosY" type="Integer" array="True"/>
+            <parameter name="NumRegistered" type="Integer" array="False"/>
+        </parameters>
+        <body/>
+    </function>
+</flowgorithm>
